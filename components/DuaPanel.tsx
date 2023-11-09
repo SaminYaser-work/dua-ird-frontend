@@ -14,7 +14,7 @@ interface IDuaPanel {
 }
 
 export default function DuaPanel({ subCats, duas }: IDuaPanel) {
-    const { selectedDua } = useContext(SelectedDuaContext);
+    const { selectedDua, setIsMobileNavOpen } = useContext(SelectedDuaContext);
     const panel = useRef<HTMLDivElement>(null);
 
     if (selectedDua !== "" && panel.current) {
@@ -30,7 +30,14 @@ export default function DuaPanel({ subCats, duas }: IDuaPanel) {
         >
             <div id="sec_top"></div>
             <div className="flex flex-row justify-start items-center gap-5 md:hidden mb-5 mt-5 bg-white rounded-xl px-5 py-4">
-                <GiHamburgerMenu />
+                <div
+                    onClick={(e) => {
+                        setIsMobileNavOpen(true);
+                        console.log("mobile nav clicked");
+                    }}
+                >
+                    <GiHamburgerMenu />
+                </div>
                 <p className="text-title font-medium leading-[25px]">
                     See all Duas
                 </p>
